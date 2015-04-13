@@ -99,7 +99,4 @@ void Researcher::Save()
 	outFile << "School: " << mSchool << endl;
 	outFile << "PhD topic: " << mTopic << endl;
 	outFile << endl;
-
-	something new here
-		even more now
 }
