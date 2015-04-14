@@ -32,13 +32,8 @@ void Manager::Print()
 void Manager::Save()
 {
 	ofstream outFile;
-	outFile.open("workers.txt", std::ios_base::app);
-	outFile << "Type: Manager" << endl;
-	outFile << "Name: " << mFirstName << " " << mLastName << endl;
-	outFile << "Salary: " << mSalary << endl;
-	outFile << "Meetings per weeks: " << mMeetings << endl;
-	outFile << "Vocations per year : " << mVocations << endl;
-	outFile << endl;
+	outFile.open("workers.txt", std::ios_base::app | std::ios_base::binary);
+	outFile.write((char*)this, sizeof(*this));
 	outFile.close();
 }
 //Engineer implementation
@@ -61,16 +56,8 @@ void Engineer::Print()
 void Engineer::Save()
 {
 	ofstream outFile;
-	outFile.open("workers.txt", std::ios_base::app);
-	outFile << "Type: Engineer" << endl;
-	outFile << "Name: " << mFirstName << " " << mLastName << endl;
-	outFile << "Salary: " << mSalary << endl;
-	if (mCpp)
-		outFile << "C++ knowledge: Yes" << endl;
-	else
-		outFile << "C++ knowledge : No" << endl;
-	outFile << "Expirience: " << mExpirience << endl;
-	outFile << endl;
+	outFile.open("workers.txt", std::ios_base::app | std::ios_base::binary);
+	outFile.write((char*)this, sizeof(*this));
 	outFile.close();
 }
 
@@ -92,11 +79,7 @@ void Researcher::Print()
 void Researcher::Save()
 {
 	ofstream outFile;
-	outFile.open("workers.txt", std::ios_base::app);
-	outFile << "Type: Researcher" << endl;
-	outFile << "Name: " << mFirstName << " " << mLastName << endl;
-	outFile << "Salary: " << mSalary << endl;
-	outFile << "School: " << mSchool << endl;
-	outFile << "PhD topic: " << mTopic << endl;
-	outFile << endl;
+	outFile.open("workers.txt", std::ios_base::app | std::ios_base::binary);
+	outFile.write((char*)this, sizeof(*this));
+	outFile.close();
 }
