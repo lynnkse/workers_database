@@ -14,6 +14,23 @@ Worker::Worker(string firstName, string lastName, int salary): mFirstName(firstN
 {	
 }
 
+void Worker::Save()
+{
+	ofstream outFile;
+	outFile.open("workers.txt", std::ios_base::app | std::ios_base::binary);
+	//in the beginning of each object there will be an int specifying size of that object in bytes
+	int obj_size = sizeof(*this);
+	//for debugging
+	cout << "obj_size = " << obj_size << endl;
+	
+	outFile.write((char*)&obj_size, sizeof(int));
+	
+	outFile.write((char*)this, sizeof(*this));
+	outFile.close();
+}
+
+
+
 //Manager implementation
 
 Manager::Manager(string firstName, string lastName, int salary, int meetings, int vocations) : Worker(firstName, lastName, salary), mMeetings(meetings), mVocations(vocations), mType(Types::manager)
@@ -29,13 +46,20 @@ void Manager::Print()
 	cout << endl;
 }
 
-void Manager::Save()
+/*void Manager::Save()
 {
 	ofstream outFile;
 	outFile.open("workers.txt", std::ios_base::app | std::ios_base::binary);
 	outFile.write((char*)this, sizeof(*this));
 	outFile.close();
 }
+
+void Manager::Load()
+{
+	ifstream inFile;
+	inFile.open("workers.txt", std::ios_base::binary);
+	inFile.read();
+}*/
 //Engineer implementation
 
 Engineer::Engineer(string firstName, string lastName, int salary, bool cpp, float expirience) : Worker(firstName, lastName, salary), mCpp(cpp), mExpirience(expirience), mType(Types::engineer)
@@ -53,13 +77,13 @@ void Engineer::Print()
 	cout << "Years of expirience: " << mExpirience << endl;
 }
 
-void Engineer::Save()
+/*void Engineer::Save()
 {
 	ofstream outFile;
 	outFile.open("workers.txt", std::ios_base::app | std::ios_base::binary);
 	outFile.write((char*)this, sizeof(*this));
 	outFile.close();
-}
+}*/
 
 //Researcher implementation
 
@@ -76,10 +100,10 @@ void Researcher::Print()
 	cout << endl;
 }
 
-void Researcher::Save()
+/*void Researcher::Save()
 {
 	ofstream outFile;
 	outFile.open("workers.txt", std::ios_base::app | std::ios_base::binary);
 	outFile.write((char*)this, sizeof(*this));
 	outFile.close();
-}
+}*/

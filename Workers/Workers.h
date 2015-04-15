@@ -16,10 +16,9 @@ public:
 
 	virtual void Print() = 0;
 	
-	//save and load - pure virtual funcs
-	virtual void Save() = 0;
-	//virtual void Load() = 0;   ------- implement later!
-protected:
+	void Save();
+	
+	protected:
 	string mFirstName;
 	string mLastName;
 	int mSalary;
@@ -31,8 +30,6 @@ public:
 	Manager(string firstName, string lastName, int salary, int meetings, int vocations);
 
 	void Print();
-	void Save();
-	//void Load();
 protected:
 	int mMeetings;
 	int mVocations;
@@ -44,8 +41,6 @@ class Engineer: public Worker
 public:
 	Engineer(string firstName, string lastName, int salary, bool cpp, float expirience);
 	void Print();
-	void Save();
-	//void Load();
 protected:
 	bool mCpp;
 	float mExpirience;
@@ -57,15 +52,11 @@ class Researcher : public Worker
 public:
 	Researcher(string firstName, string lastName, int salary, string school, string topic);
 	void Print();
-	void Save();
-	//void Load();
 protected:
 	string mSchool;
 	string mTopic;
 	Types mType;
 };
 
-
-//override << and >> operators for workers
 #endif
 
